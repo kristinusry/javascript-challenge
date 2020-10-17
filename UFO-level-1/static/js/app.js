@@ -25,6 +25,9 @@ button.on("click", function() {
     // Clear current table data
     tbody.html("");
 
+    // Prevent page from refreshing on 'Enter'
+    d3.event.preventDefault();
+
     // Select the input field value
     var input = d3.select("#datetime").property("value");
 
