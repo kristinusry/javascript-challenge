@@ -35,9 +35,11 @@ button.on("click", function() {
   
     // Assign the value of the dropdown menu option to a variable
     var datatype = dropdownMenu.node().value;
+    
+    // Assign the value of the input field to a variable
     var input = d3.select("#input").property("value");
 
-    // Initialize x and y arrays
+    // Initialize dropdown select string
     var dropdownData = " ";
 
     switch(datatype) {
