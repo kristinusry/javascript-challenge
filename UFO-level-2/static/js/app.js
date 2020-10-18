@@ -30,19 +30,43 @@ button.on("click", function() {
     // Prevent page from refreshing on 'Enter'
     d3.event.preventDefault();
 
+    // Use D3 to select the dropdown menu
+    var dropdownMenu = d3.select("#selDataset");
+  
+    // Assign the value of the dropdown menu option to a variable
+    var dataset = dropdownMenu.node().value;
+    var input = d3.select("#input").property("value");
+
+    // Initialize x and y arrays
+    var dropdownData = [];
+    //var inputData = [];
+
+    switch(dataset) {
+        case "Date":
+            dropdownData = "datetime";
+            break;
+
+        case "City":
+            dropdownData = "city";
+            break;
+
+        default:
+            dropdownData = "Date";
+    }
+
+    console.log(input)
+    console.log(dropdownData)
     // Select the input field value
-    var inputDate = d3.select("#datetime").property("value");
-    var inputCity = d3.select("#city").property("value");
-    var inputState = d3.select("#state").property("value");
-    var inputCountry = d3.select("#country").property("value");
-    var inputShape = d3.select("#shape").property("value");
+    //var inputDate = d3.select("#datetime").property("value");
+    //var inputCity = d3.select("#city").property("value");
+    //var inputState = d3.select("#state").property("value");
+    //var inputCountry = d3.select("#country").property("value");
+    //var inputShape = d3.select("#shape").property("value");
 
     // Filter to input value
-    var filteredData = tableData.filter(search => search.datetime === inputDate || search.city === inputCity || search.state === inputState || search.country === inputCountry || search.shape === inputShape);
-      
-    console.log(filteredData);
-    console.log(inputDate)
-    console.log(inputCity)
+    //var filteredData = tableData.filter(search => search.datetime === inputDate || search.city === inputCity || search.state === inputState || search.country === inputCountry || search.shape === inputShape);
+
+    var filteredData = tableData.filter(search => search.dropdownData === input);
 
     filteredData.forEach(function(UFOsearch){
         // Create a new row for every line of data and assign it as a variable
